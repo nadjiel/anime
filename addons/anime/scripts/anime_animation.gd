@@ -30,6 +30,13 @@ enum Interpolation {
 	set(value): set_interpolation(value)
 	get: return get_interpolation()
 
+static func interpolate_linear(from: Variant, to: Variant, weight: float) -> Variant:
+	return lerp(from, to, weight)
+
+static func interpolate_nearest(from: Variant, to: Variant, weight: float) -> Variant:
+	if weight < 0.5: return from
+	else: return to
+
 func set_tracks(new_tracks: Array[AnimeTrack]) -> void:
 	tracks = new_tracks
 
@@ -59,10 +66,3 @@ func set_interpolation(new_interpolation: Interpolation) -> void:
 
 func get_interpolation() -> Interpolation:
 	return interpolation
-
-func interpolate_linear(from: Variant, to: Variant, weight: float) -> Variant:
-	return lerp(from, to, weight)
-
-func interpolate_nearest(from: Variant, to: Variant, weight: float) -> Variant:
-	if weight < 0.5: return from
-	else: return to
