@@ -2,10 +2,6 @@
 class_name AnimeTrack
 extends Resource
 
-enum Looping {
-	NONE, LOOP, PING_PONG
-}
-
 @export var property_path: String = "":
 	set(value): set_property_path(value)
 	get: return get_property_path()
@@ -30,7 +26,13 @@ enum Looping {
 	set(value): set_icon(value)
 	get: return get_icon()
 
-@export var looping: Looping = Looping.NONE
+@export var looping: AnimeAnimation.Looping = AnimeAnimation.Looping.NONE:
+	set(value): set_looping(value)
+	get: return get_looping()
+
+@export var interpolation: AnimeAnimation.Interpolation = AnimeAnimation.Interpolation.LINEAR:
+	set(value): set_interpolation(value)
+	get: return get_interpolation()
 
 func set_property_path(new_property_path: String) -> void:
 	property_path = new_property_path
@@ -68,8 +70,14 @@ func set_icon(new_icon: Texture2D) -> void:
 func get_icon() -> Texture2D:
 	return icon
 
-func set_looping(new_looping: Looping) -> void:
+func set_looping(new_looping: AnimeAnimation.Looping) -> void:
 	looping = new_looping
 
-func get_looping() -> Looping:
+func get_looping() -> AnimeAnimation.Looping:
 	return looping
+
+func set_interpolation(new_interpolation: AnimeAnimation.Interpolation) -> void:
+	interpolation = new_interpolation
+
+func get_interpolation() -> AnimeAnimation.Interpolation:
+	return interpolation
