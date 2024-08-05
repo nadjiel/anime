@@ -3,36 +3,36 @@ class_name AnimeTrack
 extends Resource
 
 @export var property_path: String = "":
-	set(value): set_property_path(value)
-	get: return get_property_path()
+	set = set_property_path,
+	get = get_property_path
 
 @export var keyframes: Array[AnimeKeyframe] = []:
-	set(value): set_keyframes(value)
-	get: return get_keyframes()
+	set = set_keyframes,
+	get = get_keyframes
 
 @export var active: bool = true:
-	set(value): set_active(value)
-	get: return get_active()
+	set = set_active,
+	get = get_active
 
 @export var duration: float = 0.0:
-	set(value): set_duration(value)
-	get: return get_duration()
+	set = set_duration,
+	get = get_duration
 
 @export var track_name: String = "":
-	set(value): set_track_name(value)
-	get: return get_track_name()
+	set = set_track_name,
+	get = get_track_name
 
 @export var icon: Texture2D = null:
-	set(value): set_icon(value)
-	get: return get_icon()
+	set = set_icon,
+	get = get_icon
 
 @export var looping: AnimeAnimation.Looping = AnimeAnimation.Looping.NONE:
-	set(value): set_looping(value)
-	get: return get_looping()
+	set = set_looping,
+	get = get_looping
 
 @export var interpolation: AnimeAnimation.Interpolation = AnimeAnimation.Interpolation.LINEAR:
-	set(value): set_interpolation(value)
-	get: return get_interpolation()
+	set = set_interpolation,
+	get = get_interpolation
 
 func set_property_path(new_property_path: String) -> void:
 	property_path = new_property_path
