@@ -38,3 +38,6 @@ func _init(
 ) -> void:
 	set_value(value)
 	set_timestamp(timestamp)
+
+func _to_string() -> String:
+	return "%s: %.4f" % [ value, timestamp ]
