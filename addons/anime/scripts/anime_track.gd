@@ -41,7 +41,7 @@ func get_property_path() -> String:
 	return property_path
 
 func set_keyframes(new_keyframes: Array[AnimeKeyframe]) -> void:
-	keyframes = new_keyframes
+	keyframes = sort_keyframes(new_keyframes)
 
 func get_keyframes() -> Array[AnimeKeyframe]:
 	return keyframes
@@ -81,3 +81,11 @@ func set_interpolation(new_interpolation: AnimeAnimation.Interpolation) -> void:
 
 func get_interpolation() -> AnimeAnimation.Interpolation:
 	return interpolation
+
+func sort_keyframes(keyframes: Array[AnimeKeyframe]) -> Array[AnimeKeyframe]:
+	keyframes.sort_custom(
+		func(a: AnimeKeyframe, b: AnimeKeyframe) -> bool:
+			return a.get_timestamp() < b.get_timestamp()
+	)
+	
+	return keyframes
