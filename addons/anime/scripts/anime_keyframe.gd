@@ -3,16 +3,16 @@ class_name AnimeKeyframe
 extends Resource
 
 @export var active: bool = true:
-	set(value): set_active(value)
-	get: return get_active()
+	set = set_active,
+	get = get_active
 
 @export var timestamp: float = 0.0:
-	set(value): set_timestamp(value)
-	get: return get_timestamp()
+	set = set_timestamp,
+	get = get_timestamp
 
 var value: Variant = null:
-	set(new_value): set_value(new_value)
-	get: return get_value()
+	set = set_value,
+	get = get_value
 
 func set_active(new_value: bool) -> void:
 	active = new_value
