@@ -2,6 +2,8 @@
 class_name AnimeTrack
 extends Resource
 
+var target_obj: Object
+
 @export var property_path: String = "":
 	set = set_property_path,
 	get = get_property_path
