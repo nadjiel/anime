@@ -89,3 +89,52 @@ func sort_keyframes(keyframes: Array[AnimeKeyframe]) -> Array[AnimeKeyframe]:
 	)
 	
 	return keyframes
+
+func get_keyframe_pair(
+	keyframes: Array[AnimeKeyframe],
+	timestamp: float,
+	from: int = 0,
+	to: int = keyframes.size() - 1
+) -> Array[AnimeKeyframe]:
+	# Elimitates out of bound prone cases.
+	if from < 0: return []
+	if to > keyframes.size() - 1: return []
+	# Eliminate the case where from is greater than to,
+	# which doesn't make sense.
+	if from > to: return []
+	
+	var mid: int = from + (to - from) / 2
+	
+	# If there's only one keyframe, return it as a pair
+	if keyframes.size() == 1: return [ keyframes[mid], keyframes[mid] ]
+	
+	# If the search has ended
+	if from == to:
+		# If the last keyframe wasn't the desired, return its neighbours
+		if timestamp < keyframes[mid].get_timestamp():
+			var previous_keyframe: AnimeKeyframe = (
+				keyframes[mid - 1] if 
+				mid > 0 else 
+				keyframes[mid]
+			)
+			
+			return [ previous_keyframe, keyframes[mid] ]
+		if timestamp > keyframes[mid].get_timestamp():
+			var next_keyframe: AnimeKeyframe = (
+				keyframes[mid + 1] if
+				mid < keyframes.size() - 1 else
+				keyframes[mid]
+			)
+			
+			return [ keyframes[mid], next_keyframe ]
+	
+	# If the keyframe was found, return it as a pair.
+	if timestamp == keyframes[mid].get_timestamp():
+		return [ keyframes[mid], keyframes[mid] ]
+	# Else keep looking.
+	if timestamp < keyframes[mid].get_timestamp():
+		return get_keyframe_pair(keyframes, timestamp, from, mid - 1)
+	if timestamp > keyframes[mid].get_timestamp():
+		return get_keyframe_pair(keyframes, timestamp, mid + 1, to)
+	
+	return []
