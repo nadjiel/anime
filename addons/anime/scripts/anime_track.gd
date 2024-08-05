@@ -140,3 +140,22 @@ func get_keyframe_pair(
 		return get_keyframe_pair(keyframes, timestamp, mid + 1, to)
 	
 	return []
+
+func apply(timestamp: float) -> Variant:
+	if target_obj == null: return null
+	if keyframes.size() == 0: return null
+	
+	var keyframe_pair: Array[AnimeKeyframe] = get_keyframe_pair(keyframes, timestamp)
+	
+	var from_value: Variant = keyframe_pair[0].get_value()
+	var to_value: Variant = keyframe_pair[1].get_value()
+	
+	var from_time: float = keyframe_pair[0].get_timestamp()
+	var to_time: float = keyframe_pair[1].get_timestamp()
+	var time_interval: float = to_time - from_time
+	
+	var weight: float = (timestamp - from_time) / time_interval
+	
+	target_obj.set(property_path, AnimeAnimation.interpolate(from_value, to_value, weight, interpolation))
+	
+	return target_obj.get(property_path)

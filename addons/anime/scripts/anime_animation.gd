@@ -37,6 +37,11 @@ static func interpolate_nearest(from: Variant, to: Variant, weight: float) -> Va
 	if weight < 0.5: return from
 	else: return to
 
+static func interpolate(from: Variant, to: Variant, weight: float, mode: Interpolation) -> Variant:
+	match mode:
+		Interpolation.NEAREST: return interpolate_nearest(from, to, weight)
+		_: return null
+
 func set_tracks(new_tracks: Array[AnimeTrack]) -> void:
 	tracks = new_tracks
 
