@@ -10,9 +10,9 @@ enum Interpolation {
 	NEAREST, LINEAR
 }
 
-@export var tracks: Array[AnimeTrack] = []:
-	set(value): set_tracks(value)
-	get: return get_tracks()
+#@export var tracks: Array[AnimeTrack] = []:
+	#set(value): set_tracks(value)
+	#get: return get_tracks()
 
 @export var duration: float = 0.0:
 	set(value): set_duration(value)
@@ -42,11 +42,11 @@ static func interpolate(from: Variant, to: Variant, weight: float, mode: Interpo
 		Interpolation.NEAREST: return interpolate_nearest(from, to, weight)
 		_: return null
 
-func set_tracks(new_tracks: Array[AnimeTrack]) -> void:
-	tracks = new_tracks
-
-func get_tracks() -> Array[AnimeTrack]:
-	return tracks
+#func set_tracks(new_tracks: Array[AnimeTrack]) -> void:
+	#tracks = new_tracks
+#
+#func get_tracks() -> Array[AnimeTrack]:
+	#return tracks
 
 func set_duration(new_duration: float) -> void:
 	duration = new_duration
